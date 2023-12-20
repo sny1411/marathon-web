@@ -1,7 +1,6 @@
 @extends("templates.app")
 
 @section('content')
-<!-- {{$histoire = \App\Models\Histoire::find($histoire)}}-->
 <div style="display: flex;align-items: center; justify-content: center">
     <div>
         <tr>
