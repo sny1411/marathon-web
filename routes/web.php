@@ -50,6 +50,9 @@ Route::get('/test-vite', function () {
     return view('test-vite');
 })->name("test-vite");
 
+
+Route::resource('histoires', \App\Http\Controllers\HistoireController::class);
+
 Route::get('/user', function () {
     $histoires = Histoire::where('user_id', Auth::user()->id)->get();
     $finies = Histoire::whereIn('id', function($query) {
