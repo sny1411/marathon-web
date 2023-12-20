@@ -9,7 +9,7 @@
             <td> {{$histoire->pitch}} </td>
             @foreach(\App\Models\Chapitre::all() as $chapitre)
                 @if($chapitre->histoire_id == $histoire->id and $chapitre->premier == 1) @endif
-                <td> <button> <a href="{{route('chapitre', $suivant=$chapitre)}}"></a></button></td>
+                <td> <button> <a href="{{route('chapitre', $chapitreActuel=$chapitre)}}"></a></button></td>
             @endforeach
         </tr>
     </div>
