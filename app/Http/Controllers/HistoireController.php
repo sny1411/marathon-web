@@ -84,7 +84,8 @@ class HistoireController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $histoire = Histoire::find($id);
+        return view("histoires.show", ['histoire' => $histoire]);
     }
 
     /**
