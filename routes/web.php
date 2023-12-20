@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HistoireController;
+use App\Http\Controllers\UserController;
 use App\Models\Histoire;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
@@ -51,15 +53,6 @@ Route::get('/test-vite', function () {
 })->name("test-vite");
 
 
-Route::resource('histoires', \App\Http\Controllers\HistoireController::class);
+Route::resource('histoires', HistoireController::class);
 
-Route::get('/user', function () {
-    $histoires = Histoire::where('user_id', Auth::user()->id)->get();
-    $finies = Histoire::whereIn('id', function($query) {
-        $query->select('histoire_id')
-            ->from('terminees')
-            ->where('user_id', Auth::user()->id);
-    })->get();
-
-    return view('user', ['histoires' => $histoires, 'finies' => $finies]);
-})->name('user');
+Route::get('/user', [UserController::class, 'user'])->middleware(['auth'])->name('user');
