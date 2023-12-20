@@ -11,9 +11,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
-    public function test(){
-
-        $chaîte = Chapitre::find(1);
-        dd($chaîte->suivants);
+    public function histoire() {
+        return view('histoire', ['histoire' => 1]);
     }
 }

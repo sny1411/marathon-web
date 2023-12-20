@@ -56,3 +56,5 @@ Route::get('/test-vite', function () {
 Route::resource('histoires', HistoireController::class);
 
 Route::get('/user', [UserController::class, 'user'])->middleware(['auth'])->name('user');
+
+Route::get('/histoire', [Controller::class, 'histoire'])->middleware(['auth'])->name('histoire');
