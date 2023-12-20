@@ -6,7 +6,7 @@ Groupe test but23_groupeTT
 
 Pour lancer avec succès une première version de votre site web pendant la phase de développement, il faut exécuter les
 commandes suivantes sur votre machine de développement :
-
+hop
 ```shell
 # A partir de la racine de votre projet
 
