@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Histoire;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $histoires = Histoire::inRandomOrder()->get();
+    return view('accueil', ['histoires' => $histoires]);
 })->name("index");
 
 Route::get('/contact', function () {
