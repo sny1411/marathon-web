@@ -26,5 +26,6 @@ class EquipeController extends Controller
             'autres'=>"Autre chose",
         ];
         return view('equipes.index', ['equipe' => $equipe]);
+
     }
 }
