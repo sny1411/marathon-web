@@ -38,7 +38,7 @@ class HistoireController extends Controller
             }
         }
         $genres = \App\Models\Genre::distinct()->pluck("id");
-        return view('accueil', ['histoires' => $histoires, 'cat' => $cat, 'genres' => $genres]);
+        return view('histoires.index', ['histoires' => $histoires, 'cat' => $cat, 'genres' => $genres]);
     }
 
     /**
