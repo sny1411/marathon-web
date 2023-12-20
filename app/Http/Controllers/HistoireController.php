@@ -72,7 +72,14 @@ class HistoireController extends Controller
         $histoire->commentaire = $request->commentaire;
 
         $histoire->save();
-
+        if ($request->hasFile('media') && $request->file('media')->isValid()) {
+            $file = $request->file('media');
+            $base = 'histoire';
+            $now = time();
+            $nom = sprintf("%s_%d.%s", $base, $now, $file->extension());
+            $file->storeAs('images/oeuvres/', $nom);
+            $histoire->photo = 'images/oeuvres/' . $nom;
+        }
         return redirect()->route('commentaires.index', ['titre' => "Commentaires"]);
     }
 
