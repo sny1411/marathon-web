@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChapitreController;
 use App\Http\Controllers\EquipeController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,4 +29,4 @@ Route::get('/test-vite', function () {
 
 Route::get('/equipe', [EquipeController::class, 'index']);
 
-
+Route::resource('chapitre', ChapitreController::class);
