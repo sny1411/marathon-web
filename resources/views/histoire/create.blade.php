@@ -25,11 +25,9 @@
         </div>
         <div>
             <select name="genre_id" id="genre_id">
-                <option value="1">SF</option>
-                <option value="2">Comics</option>
-                <option value="3">Policier</option>
-                <option value="4">Drame</option>
-                <option value="5">Comédie</option>
+                @foreach(\App\Models\Genre::all() as $genre)
+                    <option value="{{$genre->id}}">{{$genre->label}}</option>
+                @endforeach
             </select>
         </div>
         <div>
