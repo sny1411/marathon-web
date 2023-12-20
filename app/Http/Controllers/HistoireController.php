@@ -54,10 +54,8 @@ class HistoireController extends Controller
         $this->validate(
             $request,
             [
-                'user_id' => 'required',
-                'scene_id' => 'required',
                 'titre' => 'required',
-                'commentaire' => 'required',
+                'pitch' => 'required'
             ],
             [
                 'required' => 'Le champ :attribute est obligatoire'
@@ -66,10 +64,10 @@ class HistoireController extends Controller
 
         $histoire = new Histoire();
 
-        $histoire->user_id = $request->user_id;
-        $histoire->scene_id = $request->scene_id;
         $histoire->titre = $request->titre;
-        $histoire->commentaire = $request->commentaire;
+        $histoire->pitch = $request->pitch;
+        $histoire->photo = $request->photo;
+        $histoire->genre_id = $request->genre_id;
 
         $histoire->save();
         if ($request->hasFile('media') && $request->file('media')->isValid()) {
@@ -77,10 +75,10 @@ class HistoireController extends Controller
             $base = 'histoire';
             $now = time();
             $nom = sprintf("%s_%d.%s", $base, $now, $file->extension());
-            $file->storeAs('images/oeuvres/', $nom);
-            $histoire->photo = 'images/oeuvres/' . $nom;
+            $file->storeAs('images/histoires/', $nom);
+            $histoire->photo = 'images/histoires/' . $nom;
         }
-        return redirect()->route('commentaires.index', ['titre' => "Commentaires"]);
+        return redirect()->route('chapitre.create', ['histoire_id' => $histoire->id]);
     }
 
     /**
