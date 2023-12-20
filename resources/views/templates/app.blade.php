@@ -9,13 +9,13 @@
 </head>
 <body>
 <header>
-<nav>
+<nav class="norm">
     <a href="#">logo</a>
     <a href="{{route('index')}}">Accueil</a>
-    <a href="{{route('test-vite')}}">Test Vite</a>
+
     <a href="#">Contact</a>
 </nav>
-    <nav>
+    <nav class="norm">
 @auth
         <a href="{{route('user')}}">{{Auth::user()->name}}</a>
         <a href="{{route("logout")}}"
@@ -28,6 +28,35 @@
         <a href="{{route("register")}}">Register</a>
     @endauth
 </nav>
+    <nav class="res">
+        <div class="navbar">
+            <div class="container nav-container">
+                <input class="checkbox" type="checkbox" name="" id="" />
+                <div class="hamburger-lines">
+                    <span class="line line1"></span>
+                    <span class="line line2"></span>
+                    <span class="line line3"></span>
+                </div>
+                <div class="logo">
+                </div>
+                <div class="menu-items">
+                    <li><a href="{{route('index')}}">Accueil</a></li>
+                    @auth
+                        <li><a href="{{route('user')}}">{{Auth::user()->name}}</a></li>
+                        <li><a href="{{route("logout")}}"
+                               onclick="document.getElementById('logout').submit(); return false;">Logout</a></li>
+                        <form id="logout" action="{{route("logout")}}" method="post">
+                            @csrf
+                        </form>
+                    @else
+                        <li><a href="{{route("login")}}">Login/</a></li>
+                        <li><a href="{{route("register")}}">Register</a></li>
+                    @endauth
+                </div>
+            </div>
+        </div>
+    </nav>
+
 </header>
 <main>
     @yield("content")

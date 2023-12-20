@@ -3,8 +3,10 @@
 @section('content')
     <div class="banner">
         <h1>Slogan</h1>
+        <a href="#hist">Découvrir</a>
     </div>
-    <h4>filtrage par genre :</h4>
+    <section class="filtre">
+
     <form action="{{route('index')}}" method="get">
         <label>
             <select name="cat">
@@ -16,11 +18,12 @@
         </label>
         <input type="submit" value="OK">
     </form>
+    </section>
     <section class="histoires container">
     @foreach($histoires as $histoire)
         <div id="hist">
             <div>{{ $histoire->titre }}</div>
-            <div>{{ $histoire->pitch }}</div>
+            <div id="pitch">{{ $histoire->pitch }}</div>
             <img src="{{$histoire->photo}}" alt="photo histoire">
             <div>{{ \App\Models\User::find($histoire->user_id)->name }}</div>
             <button><a href="{{ route("histoires.show", [$histoire->id]) }}"> READ MORE <i class='bx bxs-right-arrow' ></i></a></button>
