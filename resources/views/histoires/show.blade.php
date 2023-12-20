@@ -19,7 +19,7 @@
             <td> {{$histoire->pitch}} </td>
             @foreach(\App\Models\Chapitre::all() as $chapitre)
                 @if($chapitre->histoire_id == $histoire->id and $chapitre->premier == 1)
-                    <td> <button> <a href="{{route('chapitre', $chapitre)}}"></a> démarrer l'histoire !</button></td>
+                    <td> <button> <a href="{{route('chapitre.show', $chapitre)}}">démarrer l'histoire !</a></button></td>
                 @endif
             @endforeach
         </tr>
