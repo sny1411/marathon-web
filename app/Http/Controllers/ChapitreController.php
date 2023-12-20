@@ -63,4 +63,11 @@ class ChapitreController extends Controller
     {
         //
     }
+
+    public function liaison($id_src, $id_dest, $reponse)
+    {
+        $src = Chapitre::find($id_src);
+        $dest = Chapitre::find($id_dest);
+        $src->suivants()->attach($dest->id, ['reponse'=>$reponse]);
+    }
 }
