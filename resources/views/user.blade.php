@@ -27,7 +27,7 @@
                     <img src="{{$histoire->photo}}" alt="photo histoire">
                     <div>{{ \App\Models\User::find($finie->user_id)->name }}</div>
                     <div>Lue {{ DB::table('terminees')->select('nombre')->where('user_id', Auth::user()->id)->where('histoire_id', $finie->id)->first()->nombre }} fois</div>
-                    <button>READ MORE</button>
+                    <button>READ MORE </button>
                 </div>
             @endforeach
         </div>
