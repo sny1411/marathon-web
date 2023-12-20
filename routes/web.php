@@ -20,9 +20,6 @@ Route::get('/', function (Request $request) {
     $cat = $request->input('cat', null);
     $value = $request->cookie('cat', null);
 
-    printf($cat);
-    printf($value==null);
-    printf("cookie");
     if (!isset($cat)) {
         if (!isset($value)) {
             $histoires = Histoire::inRandomOrder()->get();
@@ -55,3 +52,14 @@ Route::get('/test-vite', function () {
 
 
 Route::resource('histoires', \App\Http\Controllers\HistoireController::class);
+
+Route::get('/user', function () {
+    $histoires = Histoire::where('user_id', Auth::user()->id)->get();
+    $finies = Histoire::whereIn('id', function($query) {
+        $query->select('histoire_id')
+            ->from('terminees')
+            ->where('user_id', Auth::user()->id);
+    })->get();
+
+    return view('user', ['histoires' => $histoires, 'finies' => $finies]);
+})->name('user');
