@@ -26,6 +26,6 @@ Route::get('/test-vite', function () {
     return view('test-vite');
 })->name("test-vite");
 
-Route::get('/equipe', [EquipeController::class, 'index']);
+Route::get('/equipe', [EquipeController::class, 'index'])->name("equipe");
 
 
