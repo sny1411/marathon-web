@@ -4,12 +4,12 @@
     <div>
         <tr>
             <td> <h1> {{$histoire->titre}}</h1></td>
-            <td> <img src="{{$histoire->photo}}" alt="image représentant l'histoire"> </td>
+            <td> <img src="{{ asset($histoire->photo)}}" alt="image représentant l'histoire"> </td>
             <td> {{$histoire->pitch}} </td>
             <td> {{$histoire->pitch}} </td>
             @foreach(\App\Models\Chapitre::all() as $chapitre)
                 @if($chapitre->histoire_id == $histoire->id and $chapitre->premier == 1) @endif
-                <td> <button> <a href="{{route('chapitre', $chapitre)}}"></a></button></td>
+                <td> <button> <a href="{{route('chapitre', $suivant=$chapitre)}}"></a></button></td>
             @endforeach
         </tr>
     </div>

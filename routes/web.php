@@ -53,3 +53,5 @@ Route::get('/test-vite', function () {
     return view('test-vite');
 })->name("test-vite");
 
+
+Route::resource('histoires', \App\Http\Controllers\HistoireController::class);
