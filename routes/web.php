@@ -20,9 +20,6 @@ Route::get('/', function (Request $request) {
     $cat = $request->input('cat', null);
     $value = $request->cookie('cat', null);
 
-    printf($cat);
-    printf($value==null);
-    printf("cookie");
     if (!isset($cat)) {
         if (!isset($value)) {
             $histoires = Histoire::inRandomOrder()->get();
