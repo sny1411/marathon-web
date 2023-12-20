@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\HistoireController;
+use App\Http\Controllers\UserController;
+use App\Models\Histoire;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,9 +22,6 @@ Route::get('/', function (Request $request) {
     $cat = $request->input('cat', null);
     $value = $request->cookie('cat', null);
 
-    printf($cat);
-    printf($value==null);
-    printf("cookie");
     if (!isset($cat)) {
         if (!isset($value)) {
             $histoires = Histoire::inRandomOrder()->get();
@@ -49,5 +51,10 @@ Route::get('/contact', function () {
 Route::get('/test-vite', function () {
     return view('test-vite');
 })->name("test-vite");
+
+
+Route::resource('histoires', HistoireController::class);
+
+Route::get('/user', [UserController::class, 'user'])->middleware(['auth'])->name('user');
 
 Route::get('/histoire', [Controller::class, 'histoire'])->middleware(['auth'])->name('histoire');
