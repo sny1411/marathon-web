@@ -21,8 +21,7 @@ class User extends Authenticatable {
     }
 
     public function terminees() {
-        return $this->belongsToMany(Histoire::class, "terminee", "user_id",
-            "histoire_id")->withPivot("nombre");
+        return $this->belongsToMany(Histoire::class, "terminees", "user_id", "histoire_id")->withPivot("nombre");
     }
 
     public function lectures() {
