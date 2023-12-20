@@ -21,7 +21,7 @@
             <div>{{ $histoire->pitch }}</div>
             <img src="{{$histoire->photo}}" alt="photo histoire">
             <div>{{ \App\Models\User::find($histoire->user_id)->name }}</div>
-            <button>READ MORE</button>
+            <button><a href="{{ route("histoires.show", [$histoire->id]) }}"> READ MORE </a></button>
         </div>
     @endforeach
 @endsection
