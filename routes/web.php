@@ -50,3 +50,13 @@ Route::get('/test-vite', function () {
     return view('test-vite');
 })->name("test-vite");
 
+Route::get('/user', function () {
+    $histoires = Histoire::where('user_id', Auth::user()->id)->get();
+    $finies = Histoire::whereIn('id', function($query) {
+        $query->select('histoire_id')
+            ->from('terminees')
+            ->where('user_id', Auth::user()->id);
+    })->get();
+
+    return view('user', ['histoires' => $histoires, 'finies' => $finies]);
+})->name('user');
