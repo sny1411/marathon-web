@@ -37,6 +37,7 @@
             @endforeach
         @else <h1>L'histoire est terminée !</h1>
               <a href="{{route('chapitre.show', $chapitre->histoire->premier())}}"> Recommencer l'histoire</a>
+              <a href="{{route('histoires.index')}}"> Revenir à l'acceuil</a>
         @endif
     </ul>
 
