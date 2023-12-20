@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ChapitreController;
+use App\Http\Controllers\EquipeController;
 use App\Http\Controllers\HistoireController;
 use App\Http\Controllers\UserController;
 use App\Models\Histoire;
@@ -30,9 +32,10 @@ Route::get('/test-vite', function () {
     return view('test-vite');
 })->name("test-vite");
 
+Route::get('/equipe', [EquipeController::class, 'index'])->name("equipe");
+
+Route::resource('chapitre', ChapitreController::class);
 
 Route::resource('histoires', HistoireController::class);
 
 Route::get('/user', [UserController::class, 'user'])->middleware(['auth'])->name('user');
-
-Route::get('/histoire', [Controller::class, 'histoire'])->middleware(['auth'])->name('histoire');
