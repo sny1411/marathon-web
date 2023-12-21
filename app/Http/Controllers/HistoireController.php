@@ -75,7 +75,7 @@ class HistoireController extends Controller
             $file = $request->file('document');
         } else {
             $msg = "Aucun fichier téléchargé";
-            return redirect()->route('histoire.index')
+            return redirect()->route('histoires.index')
                 ->with('type', 'primary')
                 ->with('msg', 'Smartphone non modifié ('. $msg . ')');
         }
@@ -88,7 +88,7 @@ class HistoireController extends Controller
             Log::info("Image supprimée : ". $histoire->photo);
             Storage::delete($histoire->photo);
         }
-        $histoire->photo = 'images/'.$nom;
+        $histoire->photo = 'public/images/'.$nom;
 
         $histoire->save();
         return redirect()->route('creaChapitre', $histoire);
