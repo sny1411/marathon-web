@@ -16,7 +16,6 @@
     <a href="{{route('interview')}}">Interview</a>
     <a href="{{route('histoires.create')}}">Nouvelle histoire</a>
     <a href="{{route('equipe')}}">Equipe </a>
-
 </nav>
     <nav class="norm">
 @auth
@@ -27,7 +26,8 @@
             @csrf
         </form>
     @else
-        <a href="{{route("login")}}">Login/</a>
+        <a href="{{route("login")}}">Login</a>
+        /
         <a href="{{route("register")}}">Register</a>
     @endauth
 </nav>
@@ -41,6 +41,7 @@
                     <span class="line line3"></span>
                 </div>
                 <div class="logo">
+                    <img src="{{Vite::asset('/resources/images/logoBookShelf.png')}}" alt="pdp" class="logo">
                 </div>
                 <div class="menu-items">
                     <li><a href="{{route('index')}}">Accueil</a></li>
@@ -56,7 +57,7 @@
                             @csrf
                         </form>
                     @else
-                        <li><a href="{{route("login")}}">Login/</a></li>
+                        <li><a href="{{route("login")}}">Login</a></li>
                         <li><a href="{{route("register")}}">Register</a></li>
                     @endauth
                 </div>

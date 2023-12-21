@@ -60,16 +60,22 @@ nav {
 nav a {
     text-decoration: none;
     color: #E9E3D8;
-    margin: 0 auto;
+    margin: 0 20px;
 }
 
 nav a:hover {
     text-decoration: underline;
 }
 
+
+.norm{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
 .logo{
     width: 5%;
-    margin: 0 auto;
 }
 
 
@@ -99,6 +105,10 @@ nav a:hover {
     padding: 10px;
 }
 
+.banner a:hover{
+    background-color: #CCA078;
+}
+
 .filtre{
     display: flex;
     align-items: center;
@@ -121,6 +131,33 @@ nav a:hover {
     grid-gap: 40px;
 }
 
+.form {
+    max-width: 400px;
+    margin: auto;
+}
+
+.form form {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
+    text-align: center;
+}
+
+
+.form-container {
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.form input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
 
 .content-container {
     display: flex;
@@ -363,6 +400,171 @@ input[type="submit"]:hover {
     color: gray;
 }
 
+.form button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.form button:hover {
+    background-color: #45a049;
+}
+
+
+.form div ul {
+    list-style-type: none;
+    color: #ff0000;
+    margin: 0;
+    padding: 0;
+}
+
+
+.form .text-center {
+    text-align: center;
+}
+
+.form h3 {
+    margin: 0;
+}
+
+.form hr {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.first-form {
+    border: 2px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #fff;
+}
+
+.first-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.first-form input[type="text"],
+.first-form input[type="file"],
+.first-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.first-form input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.first-form button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+}
+
+.first-form button:hover {
+    background-color: #45a049;
+}
+
+.second-form {
+    border: 2px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #fff;
+}
+
+.second-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.second-form select,
+.second-form input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.second-form button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+}
+
+.second-form button:hover {
+    background-color: #45a049;
+}
+
+.histoire-preview-title {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.chapitre-preview {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.pres{
+    display: flex;
+}
+
+#couv img{
+    width: 30%;
+    object-fit: cover;
+    aspect-ratio: 9/16;
+}
+
+.start{
+    text-decoration: none;
+    background-color: #257277;
+    width: 504px;
+    margin-bottom: 2em;
+}
+
+.start a{
+    color: #ffffff;
+    font-family: "anton";
+    font-size: 1.5rem;
+}
+
+.start:hover{
+    background-color: #CCA078;
+}
+
+#inf{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
 .chapitre{
     display: flex;
     align-items: center;
@@ -535,10 +737,17 @@ input[type="submit"]:hover {
     }
 
 
-    .reg .form{
+    .reg form{
         width: 100px;
     }
+
     .reg .cat{
         width: 100px;
+    }
+
+    .banner h1{
+        display: none;
+        font-size: 1.5rem;
+        margin-bottom: 50px;
     }
 }

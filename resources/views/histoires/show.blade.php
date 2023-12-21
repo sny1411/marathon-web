@@ -1,29 +1,33 @@
 @extends("templates.app")
 
 @section('content')
-<div style="display: flex;align-items: center; justify-content: center">
-    <div>
-        <tr>
-            <td> <h1> {{$histoire->titre}}</h1></td>
-            <td> <img src="{{Storage::url($histoire->photo)}}" alt="image représentant l'histoire"> </td>
+<section class="show">
+<div class="pres">
+    <div id="couv">
+    <img src="{{Storage::url($histoire->photo)}}" alt="image représentant l'histoire">
+    </div>
+        <div id="inf">
+        <h1> {{$histoire->titre}}</h1>
+        {{$histoire->pitch}}
             @foreach(\App\Models\User::all() as $user)
                 @if($user->id == $histoire->user_id)
                     <div> écrite par {{$user->name}},
+                        @endif
+                        @endforeach
+                        @foreach(\App\Models\Genre::all() as $genre)
+                            @if($genre->id == $histoire->user_id)
+                                dans le genre {{$genre->label}} </div>
                 @endif
             @endforeach
-            @foreach(\App\Models\Genre::all() as $genre)
-                @if($genre->id == $histoire->user_id)
-                     dans le genre {{$genre->label}} </div>
-                @endif
-            @endforeach
-            <td> {{$histoire->pitch}} </td>
+        </div>
+</div>
             @foreach(\App\Models\Chapitre::all() as $chapitre)
                 @if($chapitre->histoire_id == $histoire->id and $chapitre->premier == 1)
-                    <td> <button> <a href="{{route('chapitre.show', $chapitre)}}">démarrer l'histoire !</a></button></td>
+                    <button class="start"> <a href="{{route('chapitre.show', $chapitre)}}">démarrer l'histoire !</a></button>
                 @endif
             @endforeach
             @auth
-            <td>
+
                 <form action="{{route('avis.store')}}" method="POST">
                     {!! csrf_field() !!}
                     <div class="form-group">
@@ -41,9 +45,9 @@
                         <button type="submit">Valider</button>
                     </div>
                 </form>
-            </td>
+
             @endauth
-            <td>
+
                 @foreach(\App\Models\Avis::all() as $avi)
                     @if($avi->histoire_id == $histoire->id)
                         <div>
@@ -56,9 +60,7 @@
                         <hr>
                     @endif
                 @endforeach
-            </td>
-        </tr>
-    </div>
 
-</div>
+</section>
+
 @endsection
