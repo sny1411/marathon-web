@@ -4,6 +4,7 @@
     <td><button><a href="{{route('activate', $id=$histoire->id)}}">Activer l'histoire</a></button></td>
 
     <form class="first-form" action="{{route("chapitre.store")}}" method="POST" enctype="multipart/form-data">
+        {!! csrf_field() !!}
         <div>
             <label for="titre">Titre :</label>
             <input type="text" id="titre" name="titre"
