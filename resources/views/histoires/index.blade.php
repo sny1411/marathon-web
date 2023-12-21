@@ -5,11 +5,12 @@
         <h1>Bookshelf, chaque histoire devient un monde interactif</h1>
         <a href="#hist">Découvrir</a>
     </div>
-    <section class="filtre">
 
+<section class="reg">
+    <div class="filtre">
     <form action="{{route('index')}}" method="get">
         <label>
-            <select name="cat">
+            <select name="cat" class="cat">
                 <option value="All" @if($cat == 'All') selected @endif>-- Toutes catégories --</option>
                 @foreach($genres as $genre)
                     <option value="{{$genre}}" @if($cat == $genre) selected @endif>{{ \App\Models\Genre::find($genre)->label }}</option>
@@ -18,7 +19,8 @@
         </label>
         <input type="submit" value="OK">
     </form>
-    </section>
+    </div>
+</section>
     <section class="histoires container">
     @foreach($histoires as $histoire)
         @if($histoire->active == 1)
