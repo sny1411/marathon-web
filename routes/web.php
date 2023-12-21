@@ -32,11 +32,17 @@ Route::get('/test-vite', function () {
     return view('test-vite');
 })->name("test-vite");
 
+Route::get('/interview', function () {
+    return view('interview');
+})->name("interview");
+
 Route::get('/equipe', [EquipeController::class, 'index'])->name("equipe");
 
 Route::resource('chapitre', ChapitreController::class);
 Route::get('/chapitre/{histoire}/create', [ChapitreController::class, 'createChap'])->name('creaChapitre');
 Route::post('/liaison', [ChapitreController::class, 'liaison'])->name('chapitre.liaison');
+Route::get('/chapitre/{histoire}/activate', [ChapitreController::class, 'activate'])->name('activate');
+
 Route::resource('histoires', HistoireController::class);
 
 Route::get('/user', [UserController::class, 'user'])->middleware(['auth'])->name('user');
