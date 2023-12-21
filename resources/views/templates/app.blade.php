@@ -15,9 +15,12 @@
     <a href="{{route('contact')}}">Contact</a>
     <a href="{{route('interview')}}">Interview</a>
     <a href="{{route('histoires.create')}}">Nouvelle histoire</a>
+    <a href="{{route('equipe')}}">Equipe </a>
+
 </nav>
     <nav class="norm">
 @auth
+        <h1>zefzefzef</h1>
         <a href="{{route('user')}}">{{Auth::user()->name}}</a>
         <a href="{{route("logout")}}"
            onclick="document.getElementById('logout').submit(); return false;">Logout</a>

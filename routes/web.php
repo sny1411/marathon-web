@@ -37,6 +37,10 @@ Route::get('/interview', function () {
     return view('interview');
 })->name("interview");
 
+Route::get('/equipe', function () {
+    return view('equipe');
+})->name("equipe");
+
 Route::get('/equipe', [EquipeController::class, 'index'])->name("equipe");
 
 Route::resource('chapitre', ChapitreController::class);
