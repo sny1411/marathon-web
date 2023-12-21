@@ -10,7 +10,7 @@
 <body>
 <header>
 <nav class="norm">
-    <a href="#">logo</a>
+    <img src="{{Vite::asset('/resources/images/logoBookShelf.png')}}" alt="pdp" class="logo">
     <a href="{{route('index')}}">Accueil</a>
     <a href="{{route('contact')}}">Contact</a>
     <a href="{{route('interview')}}">Interview</a>
@@ -44,6 +44,10 @@
                 </div>
                 <div class="menu-items">
                     <li><a href="{{route('index')}}">Accueil</a></li>
+                    <li><a href="{{route('contact')}}">Contact</a></li>
+                    <li><a href="{{route('interview')}}">Interview</a></li>
+                    <li><a href="{{route('histoires.create')}}">Nouvelle histoire</a></li>
+                    <li><a href="{{route('equipe')}}">Equipe </a></li>
                     @auth
                         <li><a href="{{route('user')}}">{{Auth::user()->name}}</a></li>
                         <li><a href="{{route("logout")}}"

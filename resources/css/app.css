@@ -44,7 +44,7 @@ body {
 header {
 
     /*background: linear-gradient(#596D30 70%, rgba(0,0,0,0));*/
-    background-color: #596D30;
+    background-color: #257277;
     color: #E9E3D8;
     display: flex;
     justify-content: space-between;
@@ -60,11 +60,19 @@ nav {
 nav a {
     text-decoration: none;
     color: #E9E3D8;
+    margin: 0 auto;
 }
 
 nav a:hover {
     text-decoration: underline;
 }
+
+.logo{
+    width: 5%;
+    margin: 0 auto;
+}
+
+
 
 .res{
     display: none;
@@ -72,11 +80,21 @@ nav a:hover {
 
 .banner{
     background-image: url("../images/zBCjRnF.jpg");
-    padding: 25%;
+    padding: 20%;
 }
+
+.banner h1{
+    text-transform: capitalize;
+    font-size: 3rem;
+}
+
 .banner a{
     text-decoration: none;
-
+    background-color: #257277;
+    color: #F2F5F6;
+    font-family: "anton";
+    font-size: 1.5rem;
+    padding: 10px;
 }
 
 .filtre{
@@ -169,14 +187,12 @@ footer{
 }
 
 footer .bx{
-    color: white;
+    color: #0F0B08;
     font-size: 2rem;
     text-align: center;
 }
 
 .up{
-    color: black;
-    background-color: #596D30;
     border-radius: 300px;
     position: fixed;
     width: 25px;
@@ -217,6 +233,10 @@ text-align: center;
 }
 
 /*register*/
+.reg{
+    text-align: center;
+}
+
 .reg form {
     width: 300px;
     padding: 20px;
@@ -233,6 +253,13 @@ text-align: center;
 }
 
 .reg input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.reg textarea{
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;
@@ -265,6 +292,10 @@ text-align: center;
 
 input[type="submit"]:hover {
     background-color: #0056b3;
+}
+
+.reg .cat{
+    width: 300px;
 }
 
 /*login*/
@@ -328,6 +359,7 @@ input[type="submit"]:hover {
     font-size: 0.8vw;
     color: gray;
 }
+
 
 @media screen and (max-width: 800px){
     #pitch{
@@ -490,4 +522,10 @@ input[type="submit"]:hover {
     }
 
 
+    .reg .form{
+        width: 100px;
+    }
+    .reg .cat{
+        width: 100px;
+    }
 }
