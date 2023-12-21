@@ -1,6 +1,7 @@
 @extends("templates.app")
 
 @section('content')
+    <section class="form">
 <form action="{{route("register")}}" method="post">
     @csrf
     <input type="text" name="name" required placeholder="Name" /><br />
@@ -9,6 +10,6 @@
     <input type="password" name="password_confirmation" required placeholder="Confirm password" /><br />
     <button value="submit">Se connecter</button><br/>
 </form>
-Déjà un compte ? <a href="{{route("login")}}">Connectez vous !</a>
-
+Déjà un compte ? <a href="{{route("login")}}">Connectez vous</a>
+    </section>
 @endsection
