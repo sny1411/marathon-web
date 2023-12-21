@@ -83,7 +83,7 @@ class HistoireController extends Controller
         $now = time();
         $nom = sprintf("%s_%d.%s", $nom, $now, $file->extension());
 
-        $file->storeAs('public/images', $nom);
+        $file->storeAs('images', $nom);
         if (isset($histoire->photo)) {
             Log::info("Image supprimée : ". $histoire->photo);
             Storage::delete($histoire->photo);
