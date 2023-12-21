@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ChapitreController;
+use App\Http\Controllers\EquipeController;
 use App\Http\Controllers\HistoireController;
 use App\Http\Controllers\UserController;
 use App\Models\Histoire;
@@ -19,29 +21,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function (Request $request) {
-    $cat = $request->input('cat', null);
-    $value = $request->cookie('cat', null);
-
-    if (!isset($cat)) {
-        if (!isset($value)) {
-            $histoires = Histoire::inRandomOrder()->get();
-            $cat = 'All';
-            Cookie::expire('cat');
-        } else {
-            $histoires = Histoire::where('genre_id', $value)->get();
-            $cat = $value;
-            Cookie::queue('cat', $cat, 10);            }
-    } else {
-        if ($cat == 'All') {
-            $histoires = Histoire::inRandomOrder()->get();
-            Cookie::expire('cat');
-        } else {
-            $histoires = Histoire::where('genre_id', $cat)->get();
-            Cookie::queue('cat', $cat, 10);
-        }
-    }
-    $genres = \App\Models\Genre::distinct()->pluck("id");
-    return view('accueil', ['histoires' => $histoires, 'cat' => $cat, 'genres' => $genres]);
+    return redirect()->route('histoires.index');
 })->name("index");
 
 Route::get('/contact', function () {
@@ -52,7 +32,11 @@ Route::get('/test-vite', function () {
     return view('test-vite');
 })->name("test-vite");
 
+Route::get('/equipe', [EquipeController::class, 'index'])->name("equipe");
 
+Route::resource('chapitre', ChapitreController::class);
+Route::get('/chapitre/{histoire}/create', [ChapitreController::class, 'createChap'])->name('creaChapitre');
+Route::post('/liaison', [ChapitreController::class, 'liaison'])->name('chapitre.liaison');
 Route::resource('histoires', HistoireController::class);
 
 Route::get('/user', [UserController::class, 'user'])->middleware(['auth'])->name('user');

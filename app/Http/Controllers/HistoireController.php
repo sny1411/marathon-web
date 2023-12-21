@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Histoire;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class HistoireController extends Controller
 {
@@ -16,12 +19,9 @@ class HistoireController extends Controller
         $cat = $request->input('cat', null);
         $value = $request->cookie('cat', null);
 
-        printf($cat);
-        printf($value==null);
-        printf("cookie");
         if (!isset($cat)) {
             if (!isset($value)) {
-                $histoires = Histoire::inRandomOrder()->get();
+                $histoires = Histoire::all();
                 $cat = 'All';
                 Cookie::expire('cat');
             } else {
@@ -30,7 +30,7 @@ class HistoireController extends Controller
                 Cookie::queue('cat', $cat, 10);            }
         } else {
             if ($cat == 'All') {
-                $histoires = Histoire::inRandomOrder()->get();
+                $histoires = Histoire::all();
                 Cookie::expire('cat');
             } else {
                 $histoires = Histoire::where('genre_id', $cat)->get();
@@ -38,7 +38,7 @@ class HistoireController extends Controller
             }
         }
         $genres = \App\Models\Genre::distinct()->pluck("id");
-        return view('accueil', ['histoires' => $histoires, 'cat' => $cat, 'genres' => $genres]);
+        return view('histoires.index', ['histoires' => $histoires, 'cat' => $cat, 'genres' => $genres]);
     }
 
     /**
@@ -57,26 +57,42 @@ class HistoireController extends Controller
         $this->validate(
             $request,
             [
-                'user_id' => 'required',
-                'scene_id' => 'required',
                 'titre' => 'required',
-                'commentaire' => 'required',
+                'pitch' => 'required'
             ],
             [
                 'required' => 'Le champ :attribute est obligatoire'
             ]
         );
-
         $histoire = new Histoire();
 
-        $histoire->user_id = $request->user_id;
-        $histoire->scene_id = $request->scene_id;
         $histoire->titre = $request->titre;
-        $histoire->commentaire = $request->commentaire;
+        $histoire->pitch = $request->pitch;
+        $histoire->genre_id = $request->genre_id;
+        $histoire->active = 0;
+        $histoire->user_id = Auth::user()->id;
+        if ($request->hasFile('document') && $request->file('document')->isValid()) {
+            $file = $request->file('document');
+        } else {
+            $msg = "Aucun fichier téléchargé";
+            return redirect()->route('histoire.index')
+                ->with('type', 'primary')
+                ->with('msg', 'Smartphone non modifié ('. $msg . ')');
+        }
+        $nom = 'image';
+        $now = time();
+        $nom = sprintf("%s_%d.%s", $nom, $now, $file->extension());
+
+        $file->storeAs('images', $nom);
+        if (isset($histoire->photo)) {
+            Log::info("Image supprimée : ". $histoire->photo);
+            Storage::delete($histoire->photo);
+        }
+        $histoire->photo = 'images/'.$nom;
 
         $histoire->save();
+        return redirect()->route('creaChapitre', $histoire);
 
-        return redirect()->route('commentaires.index', ['titre' => "Commentaires"]);
     }
 
     /**
@@ -84,7 +100,8 @@ class HistoireController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $histoire = Histoire::find($id);
+        return view("histoires.show", ['histoire' => $histoire]);
     }
 
     /**
