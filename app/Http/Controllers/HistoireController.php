@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Histoire;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class HistoireController extends Controller
 {
@@ -18,7 +21,7 @@ class HistoireController extends Controller
 
         if (!isset($cat)) {
             if (!isset($value)) {
-                $histoires = Histoire::inRandomOrder()->get();
+                $histoires = Histoire::all();
                 $cat = 'All';
                 Cookie::expire('cat');
             } else {
@@ -27,7 +30,7 @@ class HistoireController extends Controller
                 Cookie::queue('cat', $cat, 10);            }
         } else {
             if ($cat == 'All') {
-                $histoires = Histoire::inRandomOrder()->get();
+                $histoires = Histoire::all();
                 Cookie::expire('cat');
             } else {
                 $histoires = Histoire::where('genre_id', $cat)->get();
@@ -61,24 +64,35 @@ class HistoireController extends Controller
                 'required' => 'Le champ :attribute est obligatoire'
             ]
         );
-
         $histoire = new Histoire();
 
         $histoire->titre = $request->titre;
         $histoire->pitch = $request->pitch;
-        $histoire->photo = $request->photo;
         $histoire->genre_id = $request->genre_id;
+        $histoire->active = 0;
+        $histoire->user_id = Auth::user()->id;
+        if ($request->hasFile('document') && $request->file('document')->isValid()) {
+            $file = $request->file('document');
+        } else {
+            $msg = "Aucun fichier téléchargé";
+            return redirect()->route('histoire.index')
+                ->with('type', 'primary')
+                ->with('msg', 'Smartphone non modifié ('. $msg . ')');
+        }
+        $nom = 'image';
+        $now = time();
+        $nom = sprintf("%s_%d.%s", $nom, $now, $file->extension());
+
+        $file->storeAs('images', $nom);
+        if (isset($histoire->photo)) {
+            Log::info("Image supprimée : ". $histoire->photo);
+            Storage::delete($histoire->photo);
+        }
+        $histoire->photo = 'images/'.$nom;
 
         $histoire->save();
-        if ($request->hasFile('media') && $request->file('media')->isValid()) {
-            $file = $request->file('media');
-            $base = 'histoire';
-            $now = time();
-            $nom = sprintf("%s_%d.%s", $base, $now, $file->extension());
-            $file->storeAs('images/histoires/', $nom);
-            $histoire->photo = 'images/histoires/' . $nom;
-        }
-        return redirect()->route('chapitre.create', ['histoire_id' => $histoire->id]);
+        return redirect()->route('creaChapitre', $histoire);
+
     }
 
     /**

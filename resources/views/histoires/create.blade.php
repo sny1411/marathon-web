@@ -11,7 +11,7 @@
         </div>
     @endif
 
-    <form action="{{route('histoires.store')}}" method="POST">
+    <form action="{{route('histoires.store')}}" method="POST" enctype="multipart/form-data">
         {!! csrf_field() !!}
         <div class="text-center" style="margin-top: 2rem">
             <h3>Création d'une histoire</h3>
@@ -21,7 +21,7 @@
             <input type="text" name="titre" id="titre" placeholder="Titre">
         </div>
         <div>
-            <input type="file" name="media" id="doc">
+            <input type="file" name="document" id="doc">
         </div>
         <div>
             <select name="genre_id" id="genre_id">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chapitre;
+use App\Models\Histoire;
 use Illuminate\Http\Request;
 
 class ChapitreController extends Controller
@@ -14,12 +15,16 @@ class ChapitreController extends Controller
     {
     }
 
+    public function create(Histoire $histoire)
+    {
+    }
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function createChap(Histoire $histoire)
     {
-        //
+
+        return view('chapitres.create', ['histoire' => $histoire]);
     }
 
     /**
@@ -27,7 +32,41 @@ class ChapitreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate(
+            $request,
+            ['titre' => 'required',
+                'titreCourt' => 'required',
+                'question' => 'required',
+                'texte' => 'required'],
+            [
+                'required' => 'Le champ :attribute est obligatoire'
+            ]
+        );
+        $chapitre = new Chapitre();
+        $chapitre->titre = $request->titre;
+        $chapitre->titrecourt = $request->titreCourt;
+        $chapitre->texte = $request->texte;
+        if ($request->premierTexte==null) {
+            $chapitre->premier = 0;
+        } else {
+            $chapitre->premier = 1;
+        }
+        $chapitre->question = $request->question;
+        $chapitre->histoire_id = $request->histoire;
+
+        if ($request->hasFile('document')) {
+            $file = $request->file('document');
+            $nom = 'image';
+            $now = time();
+            $nom = sprintf("%s_%d.%s", $nom, $now, $file->extension());
+
+            $file->storeAs('images', $nom);
+            $chapitre->media = 'images/'.$nom;
+        }
+
+        $chapitre->save();
+
+        return redirect()->route('creaChapitre', $request->histoire);
     }
 
     /**
@@ -64,10 +103,11 @@ class ChapitreController extends Controller
         //
     }
 
-    public function liaison($id_src, $id_dest, $reponse)
+    public function liaison(Request $request)
     {
-        $src = Chapitre::find($id_src);
-        $dest = Chapitre::find($id_dest);
-        $src->suivants()->attach($dest->id, ['reponse'=>$reponse]);
+        $src = Chapitre::find($request->source);
+        $dest = Chapitre::find($request->destination);
+        $src->suivants()->attach($dest->id, ['reponse'=>$request->reponse]);
+        return redirect()->route('creaChapitre', ($src->histoire)->id);
     }
 }
