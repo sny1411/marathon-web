@@ -50,17 +50,16 @@ class ChapitreController extends Controller
         }
         $chapitre->question = $request->question;
         $chapitre->histoire_id = $request->histoire;
-        if ($request->hasFile('document') && $request->file('document')->isValid()) {
+
+        if ($request->hasFile('document')) {
             $file = $request->file('document');
             $nom = 'image';
             $now = time();
             $nom = sprintf("%s_%d.%s", $nom, $now, $file->extension());
-            dd($request);
+
             $file->storeAs('images', $nom);
             $chapitre->media = 'images/'.$nom;
         }
-
-
 
         $chapitre->save();
 

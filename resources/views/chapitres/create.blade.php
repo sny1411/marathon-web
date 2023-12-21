@@ -1,7 +1,7 @@
 @extends("templates.app")
 
 @section('content')
-    <form action="{{route("chapitre.store")}}" method="POST">
+    <form action="{{route("chapitre.store")}}" method="POST" enctype="multipart/form-data">
         {!! csrf_field() !!}
         <div>
             <label for="titre">Titre :</label>
@@ -16,8 +16,7 @@
         </div>
 
         <div>
-            <label for="document">Media :</label>
-            <input type="file" id="document" name="document">
+            <input type="file" name="document" id="doc">
         </div>
 
         <div>
