@@ -25,7 +25,7 @@
                 </audio>
                 @else
                 @endif
-                <h3>{{$chapitre->titrecourt}}<</h3>
+                <h3>{{$chapitre->titrecourt}}</h3>
                 {{$chapitre->texte}}
 
 
