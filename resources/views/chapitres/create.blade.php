@@ -2,8 +2,8 @@
 
 @section('content')
     <td><button><a href="{{route('activate', $id=$histoire->id)}}">Activer l'histoire</a></button></td>
-    <form action="{{route("chapitre.store")}}" method="POST" enctype="multipart/form-data">
-        {!! csrf_field() !!}
+
+    <form class="first-form" action="{{route("chapitre.store")}}" method="POST" enctype="multipart/form-data">
         <div>
             <label for="titre">Titre :</label>
             <input type="text" id="titre" name="titre"
@@ -41,8 +41,7 @@
 
         <button type="submit">Envoyer</button>
     </form>
-
-    <form action="{{route('chapitre.liaison')}}" method="POST">
+    <form class="second-form" action="{{route('chapitre.liaison')}}" method="POST">
         {!! csrf_field() !!}
         <h1>Liaison des chapitres</h1>
         <label for="source">Source :</label>
@@ -63,16 +62,11 @@
 
         <button type="submit">Envoyer</button>
     </form>
-
-    <h3>Aperçu histoire : </h3>
+    <h3 class="histoire-preview-title">Aperçu histoire :</h3>
     @foreach($histoire->chapitres as $chapitre)
-        <div>
+        <div class="chapitre-preview">
             <div>{{$chapitre->id}}# => {{$chapitre->titrecourt}}</div>
-            <ul>
-                @foreach($chapitre->suivants as $suivant)
-                    <li>Lien vers : {{$suivant->id}} - Réponse : {{$suivant->pivot->reponse}}</li>
-                @endforeach
-            </ul>
         </div>
     @endforeach
+
 @endsection
