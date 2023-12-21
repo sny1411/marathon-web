@@ -14,7 +14,9 @@
     <a href="{{route('index')}}">Accueil</a>
     <a href="{{route('contact')}}">Contact</a>
     <a href="{{route('interview')}}">Interview</a>
+    @auth
     <a href="{{route('histoires.create')}}">Nouvelle histoire</a>
+    @endauth
     <a href="{{route('equipe')}}">Equipe </a>
 
 </nav>

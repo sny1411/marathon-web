@@ -29,9 +29,7 @@
                     <div id="pitch">{{ $histoire->pitch }}</div>
                     <img src="{{Storage::url($histoire->photo)}}" alt="photo histoire">
                     <div>{{ \App\Models\User::find($histoire->user_id)->name }}</div>
-                    @auth
                     <button><a href="{{ route("histoires.show", [$histoire->id]) }}"> READ MORE <i class='bx bxs-right-arrow' ></i></a></button>
-                    @endauth
                 </div>
         @endif
     @endforeach
