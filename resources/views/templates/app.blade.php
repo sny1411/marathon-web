@@ -43,7 +43,7 @@
                     <span class="line line3"></span>
                 </div>
                 <div class="logo">
-                    <img src="{{Vite::asset('/resources/images/logoBookShelf.png')}}" alt="pdp" class="logo">
+                    <img src="{{Vite::asset('resources/images/logoBookShelf.png')}}" alt="pdp" class="logo">
                 </div>
                 <div class="menu-items">
                     <li><a href="{{route('index')}}">Accueil</a></li>
