@@ -123,7 +123,7 @@ button a{
 }
 
 footer{
-    background-color: #8D634B;
+    background-color: #CCA078;
 
 }
 
@@ -170,6 +170,11 @@ footer .bx{
     text-transform: uppercase;
     font-family: "anton";
 }
+.interview {
+text-align: center;
+    font-size: 50px;
+}
+
 /*register*/
 .reg form {
     width: 300px;
