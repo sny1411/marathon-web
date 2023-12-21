@@ -20,6 +20,9 @@
                     <div>{{ $histoire->pitch }}</div>
                     <img src="{{$histoire->photo}}" alt="photo histoire">
                     <button>READ MORE<i class='bx bxs-right-arrow' ></i></button>
+                    @if($histoire->active == 0)
+                        <button><a href="{{route('creaChapitre', $histoire)}}"> reprendre l'histoire</a></button>
+                    @endif
                 </div>
             @endforeach
             </section>

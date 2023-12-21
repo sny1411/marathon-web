@@ -21,7 +21,7 @@
             <input type="text" name="titre" id="titre" placeholder="Titre">
         </div>
         <div>
-            <input type="file" name="media" id="doc">
+            <input type="file" name="document" id="doc">
         </div>
         <div>
             <select name="genre_id" id="genre_id">

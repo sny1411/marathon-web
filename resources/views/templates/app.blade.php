@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>{{isset($title) ? $title : "Page en cours"}}</title>
@@ -12,8 +12,8 @@
 <nav class="norm">
     <a href="#">logo</a>
     <a href="{{route('index')}}">Accueil</a>
-
     <a href="#">Contact</a>
+    <a href="{{route('histoires.create')}}">Nouvelle histoire</a>
 </nav>
     <nav class="norm">
 @auth
