@@ -2,9 +2,10 @@
 
 @section('content')
     <div>
-        <h1>Nous contacter</h1>
 
-        <form class="form-check-inline mx-md-3" action="{{route("contact")}}" method="POST">
+        <section class="reg">
+            <h1>Nous contacter</h1>
+        <form class="form-check-inline mx-md-3" action="{{route("contact")}}" method="POST" class="login-form">
             {!! csrf_field() !!}
             <div class="form-group">
                 <input class="form-control" type="text" id="identite" name="identite" placeholder="Prénom Nom" required>
@@ -20,6 +21,8 @@
 
             <input class="mt-1" type="submit" value="Envoyer">
         </form>
+
+        </section>
     </div>
 
 @endsection
