@@ -85,13 +85,15 @@ nav a:hover {
 }
 
 .banner{
-    background-image: url("../images/zBCjRnF.jpg");
+    background-image: url("../images/simple-bookshelf.jpg");
     padding: 20%;
+
 }
 
 .banner h1{
     text-transform: capitalize;
     font-size: 3rem;
+    color: #F2F5F6;
 }
 
 .banner a{
@@ -220,6 +222,7 @@ button a{
 
 footer{
     background-color: #CCA078;
+    text-align: center;
 
 }
 
@@ -265,7 +268,7 @@ footer .bx{
     font-family: "anton";
 }
 .interview {
-text-align: center;
+    text-align: center;
     font-size: 50px;
 }
 
@@ -559,6 +562,17 @@ input[type="submit"]:hover {
 #inf{
     display: flex;
     align-items: flex-start;
+    flex-direction: column;
+}
+
+.chapitre{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.chapitre #quest{
+    display: flex;
     flex-direction: column;
 }
 
