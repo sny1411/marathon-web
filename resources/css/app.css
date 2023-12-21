@@ -15,6 +15,8 @@ html {
     max-width: 2000px;
 }
 
+
+
 body {
     /* Margin bottom by footer height */
     margin-bottom: 30px;
@@ -100,6 +102,45 @@ nav a:hover {
 }
 
 
+.content-container {
+    display: flex;
+
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.team-info {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.team-info img {
+    max-width: 100%;
+    height: auto;
+}
+
+.member-container {
+    width: 33.33%;
+    box-sizing: border-box;
+    padding: 10px;
+}
+.member-container p {
+    text-align: center;
+    margin-bottom: 10px;
+}
+.member {
+    text-align: center;
+    font-weight: bold;
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.member img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 5px;
+}
 #hist{
     text-align: center;
     display: flex;
