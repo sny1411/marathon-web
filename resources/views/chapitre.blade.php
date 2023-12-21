@@ -20,7 +20,7 @@
     @if ($mediaType === 'video')
         <video controls src="{{$url}}"></video>
     @elseif ($mediaType === 'image')
-        <img src="{{ $url }}" alt="Image" width="150" height="150">
+        <img src="{{ Storage::url($url) }}" alt="Image" width="150" height="150">
     @elseif ($mediaType === 'audio')
         <audio controls>
             <audio controls src="{{ $url }}">

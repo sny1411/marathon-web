@@ -83,12 +83,12 @@ class HistoireController extends Controller
         $now = time();
         $nom = sprintf("%s_%d.%s", $nom, $now, $file->extension());
 
-        $file->storeAs('images', $nom);
+        $file->storeAs('public/images', $nom);
         if (isset($histoire->photo)) {
             Log::info("Image supprimée : ". $histoire->photo);
             Storage::delete($histoire->photo);
         }
-        $histoire->photo = 'public/images/'.$nom;
+        $histoire->photo = 'images/'.$nom;
 
         $histoire->save();
         return redirect()->route('creaChapitre', $histoire);

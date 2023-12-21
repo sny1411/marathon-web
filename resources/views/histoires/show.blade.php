@@ -5,7 +5,7 @@
     <div>
         <tr>
             <td> <h1> {{$histoire->titre}}</h1></td>
-            <td> <img src="{{$histoire->photo}}" alt="image représentant l'histoire"> </td>
+            <td> <img src="{{asset("app/".$histoire->photo)}}" alt="image représentant l'histoire"> </td>
             @foreach(\App\Models\User::all() as $user)
                 @if($user->id == $histoire->user_id)
                     <div> écrite par {{$user->name}},

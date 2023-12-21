@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="banner">
-        <h1>Slogan</h1>
+        <h1>Bookshelf, chaque histoire devient un monde interactif</h1>
         <a href="#hist">Découvrir</a>
     </div>
     <section class="filtre">
