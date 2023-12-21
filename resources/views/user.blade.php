@@ -2,7 +2,13 @@
 
 @section('content')
     <div>
-        <h2>Profil de {{Auth::user()->name}}</h2>
+        <div>
+            <h1>{{Auth::user()->name}}</h1>
+
+            <p>{{count($finies)}} histoire(s) terminée(s)</p>
+            <p>{{count($avis)}} avis posté(s)</p>
+            <p>{{count($histoires)}} histoire(s) écrite(s)</p>
+        </div>
 
         <div>
             <h4>Vos histoires</h4>
@@ -12,7 +18,8 @@
                     <div>{{ $histoire->titre }}</div>
                     <div>{{ $histoire->pitch }}</div>
                     <img src="{{$histoire->photo}}" alt="photo histoire">
-                    <button>READ MORE</button>
+                    <button>Modifier</button>
+                    <button>❌</button>
                 </div>
             @endforeach
         </div>
