@@ -6,6 +6,8 @@ use App\Models\Histoire;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class HistoireController extends Controller
 {
@@ -73,7 +75,7 @@ class HistoireController extends Controller
             $file = $request->file('document');
         } else {
             $msg = "Aucun fichier téléchargé";
-            return redirect()->route('taches.show', [$user->id])
+            return redirect()->route('histoire.index')
                 ->with('type', 'primary')
                 ->with('msg', 'Smartphone non modifié ('. $msg . ')');
         }
@@ -82,9 +84,9 @@ class HistoireController extends Controller
         $nom = sprintf("%s_%d.%s", $nom, $now, $file->extension());
 
         $file->storeAs('images', $nom);
-        if (isset($user->avatar)) {
-            Log::info("Image supprimée : ". $user->avatar);
-            Storage::delete($user->avatar);
+        if (isset($histoire->photo)) {
+            Log::info("Image supprimée : ". $histoire->photo);
+            Storage::delete($histoire->photo);
         }
         $histoire->photo = 'images/'.$nom;
 

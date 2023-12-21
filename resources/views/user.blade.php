@@ -18,8 +18,9 @@
                     <div>{{ $histoire->titre }}</div>
                     <div>{{ $histoire->pitch }}</div>
                     <img src="{{$histoire->photo}}" alt="photo histoire">
-                    <button>Modifier</button>
-                    <button>❌</button>
+                    @if($histoire->active == 0)
+                        <button><a href="{{route('creaChapitre', $histoire)}}"> reprendre l'histoire</a></button>
+                    @endif
                 </div>
             @endforeach
         </div>
