@@ -21,13 +21,15 @@
     </section>
     <section class="histoires container">
     @foreach($histoires as $histoire)
-        <div id="hist">
-            <div>{{ $histoire->titre }}</div>
-            <div id="pitch">{{ $histoire->pitch }}</div>
-            <img src="{{Storage::url($histoire->photo)}}" alt="photo histoire">
-            <div>{{ \App\Models\User::find($histoire->user_id)->name }}</div>
-            <button><a href="{{ route("histoires.show", [$histoire->id]) }}"> READ MORE <i class='bx bxs-right-arrow' ></i></a></button>
-        </div>
+        @if($histoire->active == 1)
+                <div id="hist">
+                    <div>{{ $histoire->titre }}</div>
+                    <div id="pitch">{{ $histoire->pitch }}</div>
+                    <img src="{{Storage::url($histoire->photo)}}" alt="photo histoire">
+                    <div>{{ \App\Models\User::find($histoire->user_id)->name }}</div>
+                    <button><a href="{{ route("histoires.show", [$histoire->id]) }}"> READ MORE <i class='bx bxs-right-arrow' ></i></a></button>
+                </div>
+        @endif
     @endforeach
     </section>
 @endsection

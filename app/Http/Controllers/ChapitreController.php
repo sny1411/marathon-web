@@ -15,6 +15,9 @@ class ChapitreController extends Controller
     {
     }
 
+    public function create(Histoire $histoire)
+    {
+    }
     /**
      * Show the form for creating a new resource.
      */
