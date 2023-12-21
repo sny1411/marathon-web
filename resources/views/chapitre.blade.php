@@ -18,9 +18,9 @@
     @endphp
 
     @if ($mediaType === 'video')
-        <video controls src="{{$url}}"></video>
+        <video controls src="{{Storage::url($chapitre->media)}}"></video>
     @elseif ($mediaType === 'image')
-        <img src="{{ Storage::url($url) }}" alt="Image" width="150" height="150">
+        <img src="{{ Storage::url($chapitre->media) }}" alt="Image" width="150" height="150">
     @elseif ($mediaType === 'audio')
         <audio controls>
             <audio controls src="{{ $url }}">
