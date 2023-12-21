@@ -65,9 +65,13 @@
     </form>
     <h3 class="histoire-preview-title">Aperçu histoire :</h3>
     @foreach($histoire->chapitres as $chapitre)
-        <div class="chapitre-preview">
+        <div>
             <div>{{$chapitre->id}}# => {{$chapitre->titrecourt}}</div>
+            <ul>
+                @foreach($chapitre->suivants as $suivant)
+                    <li>Lien vers : {{$suivant->id}} - Réponse : {{$suivant->pivot->reponse}}</li>
+                @endforeach
+            </ul>
         </div>
     @endforeach
-
 @endsection
