@@ -10,7 +10,7 @@
 <body>
 <header>
 <nav class="norm">
-    <img src="{{Vite::asset('/resources/images/logoBookShelf.png')}}" alt="pdp" class="logo">
+    <img src="{{Vite::asset('resources/images/logoBookShelf.png')}}" alt="pdp" class="logo">
     <a href="{{route('index')}}">Accueil</a>
     <a href="{{route('contact')}}">Contact</a>
     <a href="{{route('interview')}}">Interview</a>
