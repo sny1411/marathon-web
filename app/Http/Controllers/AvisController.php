@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Avis;
+use App\Models\Histoire;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AvisController extends Controller
 {
@@ -32,7 +34,6 @@ class AvisController extends Controller
         $this->validate(
             $request,
             [
-                'user_id' => 'required',
                 'histoire_id' => 'required',
                 'contenu' => 'required',
             ],
@@ -43,13 +44,13 @@ class AvisController extends Controller
 
         $avis = new Avis();
 
-        $avis->user_id = $request->user_id;
+        $avis->user_id = Auth::id();
         $avis->histoire_id = $request->histoire_id;
         $avis->contenu = $request->contenu;
 
         $avis->save();
 
-        return redirect()->route('histoires.show');
+        return redirect()->route('histoires.show', [$avis->histoire_id]);
     }
 
     /**
@@ -81,8 +82,6 @@ class AvisController extends Controller
         $this->validate(
             $request,
             [
-                'user_id' => 'required',
-                'histoire_id' => 'required',
                 'contenu' => 'required',
             ],
             [
@@ -90,15 +89,10 @@ class AvisController extends Controller
             ]
         );
 
-        $avis = new Avis();
-
-        $avis->user_id = $request->user_id;
-        $avis->histoire_id = $request->histoire_id;
         $avis->contenu = $request->contenu;
 
-        $avis->save();
-
-        return redirect()->route('histoires.show');
+        $avis->update();
+        return redirect()->route('histoires.show', [$avis->histoire_id]);
     }
 
     /**
@@ -106,10 +100,10 @@ class AvisController extends Controller
      */
     public function destroy(Request $request, string $id)
     {
+        $avis = Avis::find($id);
         if ($request->delete == 'valide') {
-            $avis = Avis::find($id);
             $avis->delete();
         }
-        return redirect()->route('histoires.show');
+        return redirect()->route('histoires.show', [$avis->histoire_id]);
     }
 }

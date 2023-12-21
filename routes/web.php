@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AvisController;
 use App\Http\Controllers\ChapitreController;
 use App\Http\Controllers\EquipeController;
 use App\Http\Controllers\HistoireController;
@@ -40,3 +41,5 @@ Route::post('/liaison', [ChapitreController::class, 'liaison'])->name('chapitre.
 Route::resource('histoires', HistoireController::class);
 
 Route::get('/user', [UserController::class, 'user'])->middleware(['auth'])->name('user');
+
+Route::resource('avis', AvisController::class);
