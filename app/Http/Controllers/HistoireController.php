@@ -21,7 +21,7 @@ class HistoireController extends Controller
 
         if (!isset($cat)) {
             if (!isset($value)) {
-                $histoires = Histoire::inRandomOrder()->get();
+                $histoires = Histoire::all();
                 $cat = 'All';
                 Cookie::expire('cat');
             } else {
@@ -30,7 +30,7 @@ class HistoireController extends Controller
                 Cookie::queue('cat', $cat, 10);            }
         } else {
             if ($cat == 'All') {
-                $histoires = Histoire::inRandomOrder()->get();
+                $histoires = Histoire::all();
                 Cookie::expire('cat');
             } else {
                 $histoires = Histoire::where('genre_id', $cat)->get();
