@@ -1,6 +1,7 @@
 @extends("templates.app")
 
 @section('content')
+    <td><button><a href="{{route('activate', $id=$histoire->id)}}">Activer l'histoire</a></button></td>
     <form action="{{route("chapitre.store")}}" method="POST" enctype="multipart/form-data">
         {!! csrf_field() !!}
         <div>

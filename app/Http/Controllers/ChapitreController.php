@@ -23,7 +23,6 @@ class ChapitreController extends Controller
      */
     public function createChap(Histoire $histoire)
     {
-
         return view('chapitres.create', ['histoire' => $histoire]);
     }
 
@@ -109,5 +108,12 @@ class ChapitreController extends Controller
         $dest = Chapitre::find($request->destination);
         $src->suivants()->attach($dest->id, ['reponse'=>$request->reponse]);
         return redirect()->route('creaChapitre', ($src->histoire)->id);
+    }
+
+    public function activate($id){
+        $histoire= Histoire::find($id);
+        $histoire->active=1;
+        $histoire->save();
+        return redirect()->route('histoires.index');
     }
 }
