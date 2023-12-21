@@ -10,8 +10,8 @@
             </ul>
         </div>
     @endif
-
-    <form action="{{route('histoires.store')}}" method="POST" enctype="multipart/form-data">
+    <section class="form">
+    <form action="{{route('histoires.store')}}" method="POST">
         {!! csrf_field() !!}
         <div class="text-center" style="margin-top: 2rem">
             <h3>Création d'une histoire</h3>
@@ -37,4 +37,5 @@
             <button class="btn btn-success" type="submit">Valide</button>
         </div>
     </form>
+    </section>
 @endsection

@@ -19,6 +19,13 @@ body {
     /* Margin bottom by footer height */
     margin-bottom: 30px;
     font-family: 'Pragati Narrow', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.espacevide {
+    flex: 1;
 }
 
 footer {
@@ -39,11 +46,6 @@ header {
     color: #E9E3D8;
     display: flex;
     justify-content: space-between;
-    top: 0;
-    left: 0;
-    right: 0;
-    position: fixed;
-    z-index: 100;
     padding: 2% 1% 2% 0%;
 }
 
@@ -122,6 +124,7 @@ button a{
 
 footer{
     background-color: #8D634B;
+
 }
 
 footer .bx{
@@ -139,7 +142,7 @@ footer .bx{
     height: 25px;
     bottom: 50px;
     right: 30px;
-    text-align: center;
+
 }
 
 .square{
@@ -167,15 +170,114 @@ footer .bx{
     text-transform: uppercase;
     font-family: "anton";
 }
+/*register*/
+.reg form {
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+}
 
+.reg label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.reg input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+#gdprCheckboxContainer,
+#termsCheckboxContainer,
+#readAndApproveContainer {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    font-weight: 16px;
+}
+
+#gdprCheckboxContainer input,
+#termsCheckboxContainer input,
+#readAndApproveContainer input {
+    margin-right: 5px;
+}
+
+.reg input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+    padding: 10px;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
 
 /*login*/
-.form{
+.log{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    margin: 0 auto;
+}
+
+.login-container {
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-form {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding-top: 10rem;
+    gap: 10px;
 }
+
+label {
+    margin-bottom: 5px;
+}
+
+input {
+    padding: 8px;
+}
+
+#remember,
+#gdprCheckbox {
+    margin-right: 5px;
+}
+
+.gdpr-checkbox {
+    margin-top: 10px;
+}
+
+input[type="submit"] {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+#remember {
+    margin-left: 3px;
+}
+
 
 @media screen and (max-width: 800px){
     #pitch{
