@@ -12,7 +12,7 @@
 <nav class="norm">
     <a href="#">logo</a>
     <a href="{{route('index')}}">Accueil</a>
-    <a href="#">Contact</a>
+    <a href="{{route('contact')}}">Contact</a>
     <a href="{{route('interview')}}">Interview</a>
     <a href="{{route('histoires.create')}}">Nouvelle histoire</a>
 </nav>
