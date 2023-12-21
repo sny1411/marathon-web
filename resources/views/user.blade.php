@@ -3,7 +3,13 @@
 @section('content')
     <section class="info">
     <div>
-        <h2>Profil de {{Auth::user()->name}}</h2>
+        <div>
+            <h1>{{Auth::user()->name}}</h1>
+
+            <p>{{count($finies)}} histoire(s) terminée(s)</p>
+            <p>{{count($avis)}} avis posté(s)</p>
+            <p>{{count($histoires)}} histoire(s) écrite(s)</p>
+        </div>
 
         <div>
             <h4>Vos histoires</h4>
