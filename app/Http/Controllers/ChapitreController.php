@@ -35,7 +35,6 @@ class ChapitreController extends Controller
             $request,
             ['titre' => 'required',
                 'titreCourt' => 'required',
-                'question' => 'required',
                 'texte' => 'required'],
             [
                 'required' => 'Le champ :attribute est obligatoire'
