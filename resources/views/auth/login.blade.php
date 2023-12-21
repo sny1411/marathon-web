@@ -1,9 +1,8 @@
 @extends("templates.app")
 
 @section('content')
-
-    <h2>LOGIN</h2>
-
+<section class="login">
+    <h1>login</h1>
     <form action="{{route("login")}}" method="post">
         @csrf
         <input type="email" name="email" required placeholder="Email" /><br />
@@ -12,4 +11,5 @@
         <button value="submit">Se connecter</button><br/>
         Vous n'avez pas de compte ? <a href="{{route("register")}}">Inscrivez-vous !</a>
     </form>
+</section>
 @endsection
