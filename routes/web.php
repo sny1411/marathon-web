@@ -39,7 +39,7 @@ Route::get('/interview', function () {
 Route::get('/equipe', [EquipeController::class, 'index'])->name("equipe");
 
 Route::resource('chapitre', ChapitreController::class);
-Route::get('/chapitre/{histoire}/create', [ChapitreController::class, 'createChap'])->name('creaChapitre');
+Route::get('/chapitre/{histoire}/create', [ChapitreController::class, 'createChap'])->middleware(['auth'])->name('creaChapitre');
 Route::post('/liaison', [ChapitreController::class, 'liaison'])->name('chapitre.liaison');
 Route::get('/chapitre/{histoire}/activate', [ChapitreController::class, 'activate'])->name('activate');
 
